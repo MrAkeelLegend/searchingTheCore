@@ -5,17 +5,20 @@ import useFetch from "../hooks/useFetch";
 const BlogDetails = () => {
 
   const { id } = useParams();
-  const { data: blog, isPending, error } = useFetch(`https://my-json-server.typicode.com/MrAkeelLegend/searching-the-core/blogs/${id}`);
+  //const { data: blog, isPending, error } = useFetch(`https://my-json-server.typicode.com/MrAkeelLegend/searching-the-core/blogs/${id}`);
+  const { data: blog, isPending, error } = useFetch(`https://searching-the-core-backend.herokuapp.com/${id}`);
   const history = useHistory();
 
   const handleDelete = () => {
-    fetch(`https://my-json-server.typicode.com/MrAkeelLegend/searching-the-core/blogs/${id}`, {
+    fetch(`https://searching-the-core-backend.herokuapp.com/${id}`, {
       method: "DELETE"
     }).then(() => {
       console.log("blog deleted successfully");
       history.push('/');
     })
   }
+
+  console.log(id);
 
   return ( 
     <div className="blog-details">

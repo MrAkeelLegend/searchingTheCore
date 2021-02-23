@@ -12,17 +12,28 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = { title, body, author };
+    //const blog = { title, body, author };
+    const blog = {
+      title: title,
+      body: body,
+      author: author
+    };
 
     setIsPending(true);
 
-    fetch('https://my-json-server.typicode.com/MrAkeelLegend/searching-the-core/blogs', {
+    //https://my-json-server.typicode.com/MrAkeelLegend/searching-the-core/blogs
+    //http://localhost:5000/add-blog
+
+    fetch('https://searching-the-core-backend.herokuapp.com/add-blog', {
       method: "POST",
-      headers: {'Content-type': 'application/json; charset=UTF-8'},
+      headers: {'Content-type': 'application/json'},
       body: JSON.stringify(blog)
+      //body: "hebhbfhub"
+      //body: blog
     }).then(() => {
       setIsPending(false);
       console.log("new blog added Successfully");
+      console.log(JSON.stringify(blog));
       //history.go(-1);
       history.push('/');
     })
